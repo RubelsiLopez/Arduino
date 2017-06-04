@@ -12,16 +12,15 @@ int aminutos = 0;          //Variable a mostrar por LCD de los minutos
 int asegundos = 0;         //Variable a mostrar por LCD de los segundos
 int segundostotal = 0;     //Tiempo total
 int msg= 0;                //Variable para el mensaje de bienvenida
-int start = 27;            //Boton para el inicio en el pin analogo 3
+int start = 28;            //Boton para el inicio en el pin analogo 3
 int empieza = 1024;        //Variable para almacenaje del boton de inicio
-int buth = 28;             //boton de Horas en el pin analogo 7
-int butm = 26;             //boton de Minutos en el pin analogo 2
+int buth = 26;             //boton de Horas en el pin analogo 7
+int butm = 27;             //boton de Minutos en el pin analogo 2
 int buts = 29;             //boton de segundos en el pin analogo 8 
 int varbuth = 0;           //Variable para almacenar el valor del boton de horas
 int varbutm = 0;           //Variable para almacenar el valor del boton de minutos
 int varbuts = 0;           //Variable para almacenar el valor del boton de segundos
 int distancia;
-
 void setup() 
 {
    lcd.begin(16, 2);         // Configuramos el numero de columnas y filas del LCD.  
@@ -62,9 +61,9 @@ void loop()
        delay(3000);
        lcd.clear();
        lcd.setCursor(0,0);
-       lcd.print("4490172123");
+       lcd.print("4490-17-2123");
        lcd.setCursor(1,1);
-       lcd.print("449017");
+       lcd.print("4490-17-566");
        delay(4000);
        msg = 1;
        lcd.clear();
@@ -127,15 +126,20 @@ void loop()
       while (segundostotal > 0) 
       { 
         distancia=ultrasonic.distanceRead(); //se mide la distancia que se tenga y se imprime en cm
+        delay(100);
         Serial.print("Distancia  en CM: ");
-        Serial.println(distancia);
-             
-        if (distancia>=90){ // si la distancia es mayor o igual a 90 pausa el temporizador y activa la alarma
+        Serial.println(distancia);    
+        if (distancia>=90 && distancia<=500){ // si la distancia es mayor o igual a 90 pausa el temporizador y activa la alarma
+                lcd.setCursor(0,0);
+                lcd.print("VUELVE A ");
+                lcd.setCursor(1,1);
+                lcd.print("ESTUDIAR");
                 digitalWrite(buzzer, HIGH);
-                delay(100);
+                delay(200);
                 digitalWrite(buzzer, LOW);
-                delay(100);
-          segundostotal;
+                delay(200);
+                segundostotal;
+                lcd.clear();
         }
         else{
           delay (1000);          // si la distancia es menor o 90 el temporizador sigue restando el tiempo

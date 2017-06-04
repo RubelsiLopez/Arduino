@@ -2,8 +2,8 @@
   // Importar librerías
 
   #include <LiquidCrystal.h>
-  //#include <Ultrasonic.h>
-//Ultrasonic ultrasonic(22, 23);  
+  #include <Ultrasonic.h>
+Ultrasonic ultrasonic(22, 23);  
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
   
   // Variables para los cálculos internos del cronómetro
@@ -19,7 +19,7 @@ LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
   int anterior=0;
   int encender=0;
   int estado=0;
-  //int distancia;
+  int distancia;
   void setup()
   {
     Serial.begin(9600); // Comienzo de la comunicación serie
@@ -36,9 +36,9 @@ LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
   void loop()/////////////////////////////////////////////////////////////
         
     {
-     /*distancia=ultrasonic.distanceRead();
+     distancia=ultrasonic.distanceRead();
       Serial.print("Distancia  en CM: ");
-      Serial.println(distancia);*/
+      Serial.println(distancia);
     estado=digitalRead(pulsador_inicio);
     if (estado && anterior == 0)     // Comprobamos si el anterior era sin pulsar y el estado actual es pulsado
   {
