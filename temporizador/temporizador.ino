@@ -1,4 +1,4 @@
-//Mr Estudius 
++//Mr Estudious 
 //Universidad Mariano Galvez
 //Rubelsi Andres Lopez Sosa
 //Ricardo Bonilla Argueta
@@ -50,7 +50,7 @@ void loop()
        delay(4000);
        lcd.clear();
        lcd.setCursor(0,0);
-       lcd.print("MR ESTUDIUS ");
+       lcd.print("MR ESTUDIOUS ");
        lcd.print("UMG");
        delay(3000);
        lcd.clear();
@@ -142,27 +142,46 @@ void loop()
                 lcd.clear();
         }
         else{
-          delay (1000);          // si la distancia es menor o 90 el temporizador sigue restando el tiempo
-          segundostotal--;
+          if(segundostotal<=3600){
+           delay (1000);          // si la distancia es menor o 90 el temporizador sigue restando el tiempo
+           segundostotal--;
            ahoras = ((segundostotal / 60)/ 60);   //Convertimos los segundos totales en horas
            aminutos = (segundostotal / 60) % 60;  //Convertimos los segundos totales en minutos
            asegundos = segundostotal % 60;        //Convertimos los segundos totales en periodos de 60 segundos
-
-        lcd.setCursor(0,0);
-        lcd.print("Tiempo restante");        //Mostramos mensaje de tiempo restante
+           lcd.setCursor(0,0);
+           lcd.print("Tiempo restante");        //Mostramos mensaje de tiempo restante
   
-        lcd.setCursor(4,1);
-        if (ahoras < 10) lcd.print("0");     // Si las horas son menor que 10, pone un "0" delante.
-        lcd.print(ahoras);                  
-        lcd.print(":");
+           lcd.setCursor(4,1);
+           if (ahoras < 10) lcd.print("0");     // Si las horas son menor que 10, pone un "0" delante.
+           lcd.print(ahoras);                  
+           lcd.print(":");
 
-        if (aminutos < 10) lcd.print("0");   // Si los minutos son menor que 10, pone un "0" delante.
-        lcd.print(aminutos);                 
+           if (aminutos < 10) lcd.print("0");   // Si los minutos son menor que 10, pone un "0" delante.
+           lcd.print(aminutos);                 
 
-        lcd.print(":");
-        if (asegundos < 10) lcd.print("0");  // si el valor de segundo esta por debajo de 9 (unidad) antepone un cero
-        lcd.print(asegundos);                
-        
+           lcd.print(":");
+           if (asegundos < 10) lcd.print("0");  // si el valor de segundo esta por debajo de 9 (unidad) antepone un cero
+           lcd.print(asegundos);     
+            if(segundostotal==2100){
+            lcd.clear();
+            lcd.setCursor(0,0);
+            lcd.print("Descansa ");
+            lcd.setCursor(1,1);
+            lcd.print("5 minutos ");
+            delay(300000);
+            lcd.clear();
+            digitalWrite(buzzer, HIGH);
+            digitalWrite(buzzer, LOW);}
+            if(segundostotal==600){
+            lcd.clear();
+            lcd.setCursor(0,0);
+            lcd.print("Descansa");
+            lcd.setCursor(1,1);
+            lcd.print("5 minutos");
+            delay(300000);
+            lcd.clear();
+            digitalWrite(buzzer,HIGH);
+            digitalWrite(buzzer,LOW);}  
           if (segundostotal == 0)            //Si finaliza el tiempo
           {           
              while(1)                        //Bucle infinito mostrando mensaje y haciendo sonar el buzzer
@@ -176,8 +195,8 @@ void loop()
               
              }      
           }
+          }   
         }
-       
      }
       
 }
