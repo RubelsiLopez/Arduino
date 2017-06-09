@@ -1,4 +1,4 @@
-+//Mr Estudious 
+//Mr Estudious 
 //Universidad Mariano Galvez
 //Rubelsi Andres Lopez Sosa
 //Ricardo Bonilla Argueta
@@ -163,6 +163,9 @@ void loop()
            if (asegundos < 10) lcd.print("0");  // si el valor de segundo esta por debajo de 9 (unidad) antepone un cero
            lcd.print(asegundos);     
             if(segundostotal==2100){
+            digitalWrite(buzzer,HIGH);
+            delay(2000);
+            digitalWrite(buzzer,LOW);  
             lcd.clear();
             lcd.setCursor(0,0);
             lcd.print("Descansa ");
@@ -170,9 +173,13 @@ void loop()
             lcd.print("5 minutos ");
             delay(300000);
             lcd.clear();
-            digitalWrite(buzzer, HIGH);
-            digitalWrite(buzzer, LOW);}
+            digitalWrite(buzzer,HIGH);
+            delay(2000);
+            digitalWrite(buzzer,LOW); }
             if(segundostotal==600){
+            digitalWrite(buzzer, HIGH);
+            delay(2000);
+            digitalWrite(buzzer, LOW);
             lcd.clear();
             lcd.setCursor(0,0);
             lcd.print("Descansa");
@@ -181,7 +188,8 @@ void loop()
             delay(300000);
             lcd.clear();
             digitalWrite(buzzer,HIGH);
-            digitalWrite(buzzer,LOW);}  
+            delay(2000);
+            digitalWrite(buzzer,LOW); }
           if (segundostotal == 0)            //Si finaliza el tiempo
           {           
              while(1)                        //Bucle infinito mostrando mensaje y haciendo sonar el buzzer
